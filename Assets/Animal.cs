@@ -14,7 +14,6 @@ public class Animal : Enemy
 
     public void Drop()
     {
-        Debug.Log("finally");
         isAbducted = false;
     }
     // Start is called before the first frame update
@@ -29,8 +28,6 @@ public class Animal : Enemy
     {
         if (isAbducted)
         {
-            Debug.Log("Help!");
-
             float dirY = Input.GetAxis("Vertical");
             animal.velocity = new Vector2(animal.velocity.x, 5f);
         }
