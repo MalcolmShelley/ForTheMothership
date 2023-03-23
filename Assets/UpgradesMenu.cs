@@ -10,7 +10,37 @@ public class UpgradesMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void getShield() {
-        //TODO: if currency == not enough throw error
+    public void upgradeShield() {
+        //TODO: if currency == not enough throw error else run a function in player that adds the shield
+
+    }
+
+    public void upgradeLaser() {
+        laser.UpgradeLaser();
+
+    }
+
+    public void upgradeEnergyRegen() {
+        //TODO: if currency == not enough throw error else run a function in player that adds the shield
+
+    }
+
+    public void upgradeSpeed() {
+        ShipMovement.UpgradeSpeed();
+
+    }
+
+    public void upgradeTraktorSpeed() {
+        Animal.UpgradeTraktorSpeed();
+
+    }
+
+    public void upgradeTraktorCapacity() {
+        // FireTraktor.UpgradeTraktorCapacity();
+
+    }
+
+    public void repair() {
+
     }
 }
