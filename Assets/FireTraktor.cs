@@ -7,7 +7,6 @@ public class FireTraktor : MonoBehaviour
     public Transform firepoint;
     public SpriteRenderer gun;
     public SpriteRenderer beamRenderer;
-    public int beamWidth = 10;
     public int maxAnimals = 1;
 
     [SerializeField] private LayerMask abductable;
