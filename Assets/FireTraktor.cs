@@ -17,37 +17,69 @@ public class FireTraktor : MonoBehaviour
     {
         if (Input.GetButton("Jump") && gun.enabled)
         {
+            beamRenderer.enabled = true;
+
+            // remove abducted animals
+            foreach (Animal animal in abductionList)
+            {
+                if (animal == null)
+                {
+                    abductionList.Remove(animal);
+                }
+            }
             ShootTraktor();
         }
         else
         {
-            foreach (Animal animal in abductionList)
-            {
-                animal.Drop();
-            }
-            abductionList.Clear();
-                
-           beamRenderer.enabled = false;
+            beamRenderer.enabled = false;
+
+            DropAnimals();
         }
     }
 
     void ShootTraktor()
     {
-        RaycastHit2D _hit = Physics2D.BoxCast(firepoint.position, beamRenderer.bounds.size,  0f, Vector2.down, 100f, abductable);
-        beamRenderer.enabled = true;
+        RaycastHit2D[] _hits = Physics2D.BoxCastAll(firepoint.position, beamRenderer.bounds.size, 0f, Vector2.down, 100f, abductable);
+        ArrayList missingAnimals = new ArrayList(abductionList);
 
-        int numAnimals = 0;
-        while (_hit && numAnimals < maxAnimals)
+        foreach (RaycastHit2D hit in _hits)
         {
-            _hit.collider.TryGetComponent(out Animal hitAnimal);
-            if (hitAnimal)
+            if (hit.collider.TryGetComponent(out Animal hitAnimal))
             {
-                hitAnimal.Abduct();
-                abductionList.Add(hitAnimal);
-                numAnimals += 1;
-                _hit = Physics2D.BoxCast(firepoint.position, beamRenderer.bounds.size, 0f, Vector2.down, 100f, abductable);
+                if (missingAnimals.Contains(hitAnimal))
+                {
+                    missingAnimals.Remove(hitAnimal);
+                }
+                else if (abductionList.Count < maxAnimals)
+                {
+                    hitAnimal.Abduct();
+                    abductionList.Add(hitAnimal);
+                }
             }
         }
+
+        // remove all if no hit
+        if (_hits.Length == 0)
+        {
+            DropAnimals();
+        }
+
+        // remove missing animals if not hit
+        foreach (Animal animal in missingAnimals)
+        {
+            animal.Drop();
+            abductionList.Remove(animal);
+        }
+
+    }
+
+    void DropAnimals()
+    {
+        foreach (Animal animal in abductionList)
+        {
+            animal.Drop();
+        }
+        abductionList.Clear();
     }
 
 }

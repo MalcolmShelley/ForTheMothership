@@ -28,7 +28,6 @@ public class Animal : Enemy
     {
         if (isAbducted)
         {
-            float dirY = Input.GetAxis("Vertical");
             animal.velocity = new Vector2(animal.velocity.x, 5f);
         }
     }
