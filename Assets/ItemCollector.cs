@@ -8,6 +8,8 @@ public class ItemCollector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Chicken"))
         {
+            GlobalManager.instance.addRations(1);
+
             Destroy(collision.gameObject);
         }
     }
