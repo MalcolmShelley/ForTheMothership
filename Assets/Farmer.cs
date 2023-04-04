@@ -9,19 +9,18 @@ public class Farmer : Enemy
     private float speed;
     private float padding;
     void Start(){
-        flock = new List<GameObject>();
-        GetEntities();
+        this.farmer = this.GetComponent<Rigidbody2D>();
+        this.flock = new List<GameObject>();
         this.speed = 3f;
+        GetEntities();
+        
     }
     
     void Move(){
         int direction = CalculateDirection();
-
-        if (this.WithinPadding() == true || this.CalculateDirection() == 0){
-            direction = 0;
-        }else{
-            this.transform.Translate(Vector2.right * speed * direction * Time.deltaTime);
-        }
+        Debug.Log(direction);
+        this.transform.Translate(Vector2.right * speed * direction * Time.deltaTime);
+        
 
         
     }
@@ -31,7 +30,7 @@ public class Farmer : Enemy
         int right = 0;
         int left = 0;
 
-        foreach (var animal in flock){
+        foreach (var animal in this.flock){
             if (animal.transform.position.x < this.transform.position.x){
                 if(animal.tag == "Chicken"){
                     left ++;
@@ -52,7 +51,7 @@ public class Farmer : Enemy
             }
         }
 
-        //Debug.Log(left + "," + right);
+        Debug.Log(left + "," + right);
 
         if(left > right){
             return -1;

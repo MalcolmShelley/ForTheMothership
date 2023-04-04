@@ -25,6 +25,10 @@ public class Animal : Enemy
         this.minX = -50f;
         this.maxX = 50f;
         this.destinationPoint = GetRandomPointWithinRange();
+        GetEntities();
+        foreach(var body in this.neighbours){
+            body.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        }
     }
 
     public void Abduct()
@@ -59,7 +63,7 @@ public class Animal : Enemy
 
         //Debug.Log(direction);
 
-        if (this.WithinPadding() == true || this.CalculateDirection() == 0){
+        if (this.CalculateDirection() == 0){
             direction = 0;
             //Debug.Log(this.name + " here!");
             this.destinationPoint = GetRandomPointWithinRange();
