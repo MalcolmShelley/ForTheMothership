@@ -27,7 +27,8 @@ public class Animal : Enemy
         this.destinationPoint = GetRandomPointWithinRange();
         GetEntities();
         foreach(var body in this.neighbours){
-            body.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            //body.GetComponent<Rigidbody2D>().collisionDetectionMode = this.CollisionDetectionMode2D.Continuous;
+            Physics2D.IgnoreCollision(body.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
         }
     }
 
@@ -136,5 +137,11 @@ public class Animal : Enemy
 
     public static void UpgradeTraktorSpeed() {
         speed *= 2;
+    }
+
+    void OnCollisionEnter(Collision collision){
+        if (collision.gameObject.layer == 3 || collision.gameObject.layer == 0){
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
+        }
     }
 }

@@ -13,12 +13,15 @@ public class Farmer : Enemy
         this.flock = new List<GameObject>();
         this.speed = 3f;
         GetEntities();
-        
+        foreach(var body in this.flock){
+            //body.GetComponent<Rigidbody2D>().collisionDetectionMode = this.CollisionDetectionMode2D.Continuous;
+            Physics2D.IgnoreCollision(body.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
+        }
     }
     
     void Move(){
         int direction = CalculateDirection();
-        Debug.Log(direction);
+        //Debug.Log(direction);
         this.transform.Translate(Vector2.right * speed * direction * Time.deltaTime);
         
 
@@ -51,7 +54,7 @@ public class Farmer : Enemy
             }
         }
 
-        Debug.Log(left + "," + right);
+        //Debug.Log(left + "," + right);
 
         if(left > right){
             return -1;
@@ -94,5 +97,11 @@ public class Farmer : Enemy
             }
         }
         return false;
+    }
+
+    void OnCollisionEnter(Collision collision){
+        if (collision.gameObject.layer == 3 || collision.gameObject.layer == 0){
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
+        }
     }
 }
