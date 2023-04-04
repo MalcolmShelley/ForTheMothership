@@ -15,6 +15,9 @@ public class Animal : Enemy
     //make padding more elegant
     private float padding;
 
+    private int direction;
+
+
     private List<GameObject> neighbours;
 
 
@@ -22,8 +25,14 @@ public class Animal : Enemy
         this.neighbours = new List<GameObject>();
         this.animal = GetComponent<Rigidbody2D>();
         this.padding = 0f;
-        this.minX = -50f;
-        this.maxX = 50f;
+        if(GlobalManager.getLevel() == 4){
+            this.minX = -50f;
+            this.maxX = 50f;
+        }else if(GlobalManager.getLevel() == 5){
+            this.minX = -18.8f;
+            this.maxX = 6.4f;
+        }
+        
         this.destinationPoint = GetRandomPointWithinRange();
         GetEntities();
         foreach(var body in this.neighbours){
@@ -43,7 +52,7 @@ public class Animal : Enemy
     }
     void Update()
     {
-        //TODO FIX ABDUCTION
+
         if (this.isAbducted){
             this.animal.velocity = new Vector2(animal.velocity.x, speed * Time.deltaTime);
         }
@@ -53,25 +62,19 @@ public class Animal : Enemy
             StartCoroutine(WaitAndSetRandomDestination(2f));
         }
             
-            
+        
     }     
     
 
     void Move(){
-        int direction = CalculateDirection();
+        this.direction = CalculateDirection();
 
         //Debug.Log(this.WithinPadding());
 
-        //Debug.Log(direction);
-
         if (this.CalculateDirection() == 0){
-            direction = 0;
-            //Debug.Log(this.name + " here!");
-            this.destinationPoint = GetRandomPointWithinRange();
-            //Debug.Log(this.name + " is here: " + this.GetCurrentPosition() +  "  and is headed to: " + this.destinationPoint);
+            StartCoroutine(WaitAndSetRandomDestination(2f));
         }
         
-        //Debug.Log(direction);
         this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, speed * Mathf.Abs(direction) * Time.deltaTime);
         
 
@@ -89,6 +92,7 @@ public class Animal : Enemy
 
         return new Vector2(x, y);
     }
+
 
     private Vector2 GetCurrentPosition(){
         return new Vector2(this.transform.position.x, this.transform.position.y);
@@ -120,19 +124,22 @@ public class Animal : Enemy
     }
 
     public int CalculateDirection(){
-        if(this.transform.position.x < this.destinationPoint.x - 1.5){
-            return 1;
-        }else if(this.transform.position.x > this.destinationPoint.x + 1.5){
-            return -1;
+        if(this.transform.position.x < this.destinationPoint.x){
+            this.direction = 1;
+            return this.direction;
+        }else if(this.transform.position.x > this.destinationPoint.x){
+            this.direction = -1;
+            return this.direction;
         }
-
-        return 0;
+        
+        this.direction = 0;
+        return this.direction;
     }
 
     IEnumerator WaitAndSetRandomDestination(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        GetRandomPointWithinRange();
+        this.destinationPoint = GetRandomPointWithinRange();
     }
 
     public static void UpgradeTraktorSpeed() {
@@ -144,4 +151,12 @@ public class Animal : Enemy
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision) {   
+        if(collision.gameObject.layer == 6){
+            this.direction = 0;
+            this.destinationPoint = GetRandomPointWithinRange();
+            //Debug.Log(this.destinationPoint);
+        }
+    }
+
 }
