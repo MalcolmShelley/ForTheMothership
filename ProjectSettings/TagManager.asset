@@ -8,8 +8,12 @@ TagManager:
   - Cow
   - Pig
   - Farmer
+<<<<<<< HEAD
   - Terrain
   - Walls
+=======
+  - shotgun
+>>>>>>> origin/main
   layers:
   - Default
   - TransparentFX
