@@ -7,7 +7,8 @@ public class UpgradesMenu : MonoBehaviour
 {
     //TODO: make this work for other scenes
     public void NextLevel() { 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(GlobalManager.getLevel());
+        GlobalManager.incrementLevel();
     }
 
     public void upgradeShield() {

@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
     public void PlayGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GlobalManager.resetVariables();
+        SceneManager.LoadScene(GlobalManager.getLevel()); //Load first level
+        GlobalManager.incrementLevel();
     }
 
     public void QuitGame() {

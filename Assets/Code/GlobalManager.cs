@@ -2,40 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalManager : MonoBehaviour
+public static class GlobalManager
 {
-    public static GlobalManager instance;
 
-    public int comradeCount;
-    public int rations;
-    public int playerHealth;
+    private static int comradeCount = 1000;
+    private static int rations = 0;
+    private static int playerHealth = 100;
+    private static int levelCount = 3;
 
-    void Start()
+    public static void addRations(int newRationCount)
     {
-        if(instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
+        rations += newRationCount;
+    }
+    public static void useRations(int usedRationCount)
+    {
+        rations -= usedRationCount;
+    }
+    public static int getRations()
+    {
+        return rations;
+    }
 
-        comradeCount = 1000;
+    public static int getPlayerHealth() {
+        return playerHealth;
+    }
+
+    public static int getLevel() {
+        return levelCount;
+    }
+
+    public static void incrementLevel() {
+        levelCount++;
+    }
+
+    public static void resetVariables() {
+        comradeCount = 1000; //MAKE SURE THESE MATCH THE VARIABLES WHEN THEY START
         rations = 0;
         playerHealth = 100;
-    }
-
-    public void addRations(int newRationCount)
-    {
-        this.rations += newRationCount;
-    }
-    public void useRations(int usedRationCount)
-    {
-        this.rations -= usedRationCount;
-    }
-    public int getRations()
-    {
-        return this.rations;
+        levelCount = 3;
     }
 }
