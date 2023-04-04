@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 9147572893018705445}
   - component: {fileID: 9147572893018705446}
   - component: {fileID: -1967651101198282691}
+<<<<<<< Updated upstream
   - component: {fileID: -7853968698242624231}
+=======
+  - component: {fileID: 1054518347337058567}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -121,7 +125,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 7
+<<<<<<< Updated upstream
 --- !u!114 &-7853968698242624231
+=======
+--- !u!114 &1054518347337058567
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
