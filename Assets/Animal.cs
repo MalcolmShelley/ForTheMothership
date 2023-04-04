@@ -7,6 +7,7 @@ public class Animal : Enemy
     public int value = 1;
     private Rigidbody2D animal;
     private bool isAbducted = false;
+    private static float speed = 5f;
 
     public void Abduct()
     {
@@ -30,7 +31,11 @@ public class Animal : Enemy
         if (isAbducted)
         {
             float dirY = Input.GetAxis("Vertical");
-            animal.velocity = new Vector2(animal.velocity.x, 5f);
+            animal.velocity = new Vector2(animal.velocity.x, speed);
         }
+    }
+
+    public static void UpgradeTraktorSpeed() {
+        speed *= 2;
     }
 }
