@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     {
         if (!isAlive)
             return;
-        enemyAudio.Play();
         health -= damage;
         if (health <= 0)
         {
@@ -32,6 +31,7 @@ public class Enemy : MonoBehaviour
     {
         if (isAlive)
         {
+            enemyAudio.Play();
             isAlive = false;
             anim.SetTrigger("die");
         }
