@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Chicken
-  - UpgradeButton
+  - Cow
+  - Pig
+  - Farmer
   layers:
   - Default
   - TransparentFX
