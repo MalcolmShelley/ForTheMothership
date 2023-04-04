@@ -18,6 +18,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Move(){
+
+    }
+
     void Die()
     {
         if (isAlive)
@@ -30,5 +34,9 @@ public class Enemy : MonoBehaviour
     private void Remove()
     {
         Destroy(gameObject);
+    }
+
+    private void GetEntities(){
+
     }
 }
