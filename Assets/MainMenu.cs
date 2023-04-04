@@ -16,4 +16,9 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("This works in the real game not the editor according to some random guy on Youtube");
     }
+
+    public void NewGamePlus() {
+        GlobalManager.resetLevel();
+        SceneManager.LoadScene(2); //Go to upgrade screen first
+    }
 }
