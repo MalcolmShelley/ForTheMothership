@@ -8,11 +8,6 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     private bool isAlive = true;
 
-    private void Start()
-    {
-        //anim = GetComponent<Animator>();
-    }
-
     public void TakeDamage (int damage)
     {
         health -= damage;

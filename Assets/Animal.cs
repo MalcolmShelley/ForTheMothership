@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Animal : Enemy
 {
+    public int value = 1;
     private Rigidbody2D animal;
     private bool isAbducted = false;
     //temp variable
-    private float speed = 5f;
+    private static float speed = 5f;
     private Vector2 destinationPoint;
     private float minX, maxX;
 
@@ -129,4 +130,7 @@ public class Animal : Enemy
         GetRandomPointWithinRange();
     }
 
+    public static void UpgradeTraktorSpeed() {
+        speed *= 2;
+    }
 }
