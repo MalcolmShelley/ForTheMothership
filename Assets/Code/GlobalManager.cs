@@ -8,7 +8,7 @@ public static class GlobalManager
     private static int comradeCount = 1000;
     private static int rations = 0;
     private static int playerHealth = 100;
-    private static int levelCount = 3;
+    private static int levelCount = 4;
 
     public static void addRations(int newRationCount)
     {
@@ -39,6 +39,6 @@ public static class GlobalManager
         comradeCount = 1000; //MAKE SURE THESE MATCH THE VARIABLES WHEN THEY START
         rations = 0;
         playerHealth = 100;
-        levelCount = 3;
+        levelCount = 4;
     }
 }

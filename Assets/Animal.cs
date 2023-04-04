@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Animal : Enemy
 {
+    public int value = 1;
     private Rigidbody2D animal;
     private bool isAbducted = false;
     private static float speed = 5f;
