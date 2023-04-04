@@ -5,7 +5,7 @@ using UnityEngine;
 public static class GlobalManager
 {
 
-    private static int comradeCount = 1000;
+    private static int comradeCount = 100;
     private static int rations = 0;
     private static int playerHealth = 100;
     private static int levelCount = 4;
@@ -60,7 +60,7 @@ public static class GlobalManager
 
     public static void resetVariables() {
         //MAKE SURE THESE MATCH THE VARIABLES WHEN THEY START
-        comradeCount = 1000;
+        comradeCount = 100;
         rations = 0;
         playerHealth = 100;
         levelCount = 4;
