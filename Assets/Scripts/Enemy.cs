@@ -8,13 +8,10 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     private bool isAlive = true;
     AudioSource enemyAudio;
-
     void Awake()
-    {
-        enemyAudio = GetComponent<AudioSource>();
-        //anim = GetComponent<Animator>();
-    }
-
+        {
+            enemyAudio = GetComponent<AudioSource>();
+        }
     public void TakeDamage (int damage)
     {
         if (!isAlive)

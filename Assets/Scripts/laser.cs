@@ -5,7 +5,7 @@ using UnityEngine;
 public class laser : MonoBehaviour
 {
     public Camera cam;
-    public int damage = 1;
+    public static int damage = 1;
     public SpriteRenderer gunSprite;
     public LineRenderer lineRenderer;
     public Transform firepoint;
@@ -63,6 +63,10 @@ public class laser : MonoBehaviour
         float angle = Mathf.Atan2(gunDirection.y, gunDirection.x) * Mathf.Rad2Deg;
         gunRotation.eulerAngles = new Vector3(0, 0, angle);
         gun.rotation = gunRotation;
+    }
+
+        public static void UpgradeLaser() {
+        damage += 1;
     }
 
 }
