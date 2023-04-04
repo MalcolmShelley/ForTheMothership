@@ -27,6 +27,12 @@ public static class GlobalManager
         return playerHealth;
     }
 
+    public static int reducePlayerHealth(int ammount)
+    {
+        playerHealth -= ammount;
+        return playerHealth;
+    }
+
     public static int getLevel() {
         return levelCount;
     }
