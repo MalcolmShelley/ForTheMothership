@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Chicken
+  - Cow
+  - Pig
+  - Farmer
   layers:
   - Default
   - TransparentFX
