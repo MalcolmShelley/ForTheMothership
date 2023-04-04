@@ -52,6 +52,18 @@ public class Animal : Enemy
     }
     void Update()
     {
+        Debug.Log(GlobalManager.getLevel());
+        if(GlobalManager.getLevel() == 4){
+            this.minX = -50f;
+            this.maxX = 50f;
+        }else if(GlobalManager.getLevel() == 5){
+            this.minX = -18f;
+            this.maxX = 6f;
+        }
+
+        if(this.destinationPoint.x > this.maxX || this.destinationPoint.x < minX){
+            StartCoroutine(WaitAndSetRandomDestination(2f));
+        }
 
         if (this.isAbducted){
             this.animal.velocity = new Vector2(animal.velocity.x, speed * Time.deltaTime);
@@ -146,16 +158,12 @@ public class Animal : Enemy
         speed *= 2;
     }
 
-    void OnCollisionEnter(Collision collision){
-        if (collision.gameObject.layer == 3 || collision.gameObject.layer == 0){
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
-        }
-    }
+    
     private void OnCollisionEnter2D(Collision2D collision) {   
         if(collision.gameObject.layer == 6){
             this.direction = 0;
             this.destinationPoint = GetRandomPointWithinRange();
-            //Debug.Log(this.destinationPoint);
+            Debug.Log(this.name + " , " + this.destinationPoint);
         }
     }
 
