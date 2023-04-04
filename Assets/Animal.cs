@@ -6,12 +6,13 @@ public class Animal : Enemy
 {
     private Rigidbody2D animal;
     private bool isAbducted = false;
+    //temp variable
     private float speed = 5f;
     private Vector2 destinationPoint;
     private float minX, maxX;
 
     //make padding more elegant
-    private float padding = 3f;
+    private float padding;
 
     private List<GameObject> neighbours;
 
@@ -19,6 +20,7 @@ public class Animal : Enemy
     void Start(){
         this.neighbours = new List<GameObject>();
         this.animal = GetComponent<Rigidbody2D>();
+        this.padding = 0f;
         this.minX = -50f;
         this.maxX = 50f;
         this.destinationPoint = GetRandomPointWithinRange();
