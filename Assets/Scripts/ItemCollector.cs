@@ -11,6 +11,16 @@ public class ItemCollector : MonoBehaviour
             GlobalManager.addRations(1);
 
             Destroy(collision.gameObject);
+        } else if(collision.gameObject.CompareTag("Pig"))
+        {
+            GlobalManager.addRations(3);
+
+            Destroy(collision.gameObject);
+        } else if (collision.gameObject.CompareTag("Cow"))
+        {
+            GlobalManager.addRations(5);
+
+            Destroy(collision.gameObject);
         }
     }
 }

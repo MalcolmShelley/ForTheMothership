@@ -21,11 +21,7 @@ public class Farmer : Enemy
     
     void Move(){
         int direction = CalculateDirection();
-        //Debug.Log(direction);
         this.transform.Translate(Vector2.right * speed * direction * Time.deltaTime);
-        
-
-        
     }
 
 
@@ -54,8 +50,6 @@ public class Farmer : Enemy
             }
         }
 
-        //Debug.Log(left + "," + right);
-
         if(left > right){
             return -1;
         }else if(right > left){
@@ -77,8 +71,6 @@ public class Farmer : Enemy
         this.flock.AddRange(GameObject.FindGameObjectsWithTag("Pig"));
         this.flock.AddRange(GameObject.FindGameObjectsWithTag("Cow"));
         this.flock.AddRange(GameObject.FindGameObjectsWithTag("Farmer"));
-        
-
     }
 
     private bool WithinPadding(){
