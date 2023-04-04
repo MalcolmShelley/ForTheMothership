@@ -8,6 +8,7 @@ TagManager:
   - Cow
   - Pig
   - Farmer
+  - shotgun
   layers:
   - Default
   - TransparentFX
