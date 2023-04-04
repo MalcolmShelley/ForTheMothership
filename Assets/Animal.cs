@@ -67,7 +67,7 @@ public class Animal : Enemy
         }
         
         //Debug.Log(direction);
-        this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, this.speed * Mathf.Abs(direction) * Time.deltaTime);
+        this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, speed * Mathf.Abs(direction) * Time.deltaTime);
         
 
     }
