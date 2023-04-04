@@ -20,13 +20,13 @@ public class FireTraktor : MonoBehaviour
             beamRenderer.enabled = true;
 
             // remove abducted animals
-            foreach (Animal animal in abductionList)
-            {
-                if (animal == null)
-                {
-                    abductionList.Remove(animal);
-                }
-            }
+            //foreach (Animal animal in abductionList)
+            //{
+               // if (animal == null)
+                //{
+                    //abductionList.Remove(animal);
+                //}
+            //}
             ShootTraktor();
         }
         else
