@@ -21,7 +21,7 @@ public class UpgradesMenu : MonoBehaviour
     public string text;
 
     //To make text type over time
-    private float delay = 0.1f;
+    private float delay = 0.03f;
     private string currentText = "";
 
     // Start is called before the first frame update
