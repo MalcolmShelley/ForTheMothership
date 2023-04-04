@@ -5,7 +5,6 @@ using UnityEngine;
 public class laser : MonoBehaviour
 {
     public Camera cam;
-    public static int damage = 1;
     public SpriteRenderer gunSprite;
     public LineRenderer lineRenderer;
     public Transform firepoint;
@@ -41,7 +40,7 @@ public class laser : MonoBehaviour
             _hit.collider.TryGetComponent(out Enemy hitEnemy);
             if (hitEnemy)
             {
-                hitEnemy.TakeDamage(damage);
+                hitEnemy.TakeDamage(GlobalManager.getLaserDamage());
             }
         }
         else
@@ -64,9 +63,4 @@ public class laser : MonoBehaviour
         gunRotation.eulerAngles = new Vector3(0, 0, angle);
         gun.rotation = gunRotation;
     }
-
-        public static void UpgradeLaser() {
-        damage += 1;
-    }
-
 }

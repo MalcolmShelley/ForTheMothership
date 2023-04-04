@@ -8,8 +8,8 @@ public class Animal : Enemy
     private Rigidbody2D animal;
     private bool isAbducted = false;
     private bool isFalling = false;
+    private float horizontalSpeed = 4;
     //temp variable
-    private static float speed = 5f;
     private Vector2 destinationPoint;
     private float minX, maxX;
 
@@ -45,7 +45,7 @@ public class Animal : Enemy
     void Update()
     {
         if (this.isAbducted){
-            this.animal.velocity = new Vector2(animal.velocity.x, speed);
+            this.animal.velocity = new Vector2(animal.velocity.x, GlobalManager.getTraktorSpeed());
         }
         Move();
         GetEntities();
@@ -74,7 +74,7 @@ public class Animal : Enemy
                 this.destinationPoint = GetRandomPointWithinRange();
             }
 
-            this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, speed * Mathf.Abs(direction) * Time.deltaTime);
+            this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, horizontalSpeed * Mathf.Abs(direction) * Time.deltaTime);
         }
 
     }
@@ -135,10 +135,6 @@ public class Animal : Enemy
     {
         yield return new WaitForSeconds(seconds);
         GetRandomPointWithinRange();
-    }
-
-    public static void UpgradeTraktorSpeed() {
-        speed *= 2;
     }
 
     void OnCollisionEnter(Collision collision){

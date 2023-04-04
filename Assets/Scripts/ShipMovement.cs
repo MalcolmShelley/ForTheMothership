@@ -7,7 +7,6 @@ public class ShipMovement : MonoBehaviour
 {
     private Rigidbody2D player;
     public Animator anim;
-    private static float speed = 5f;
 
     private List<GameObject> entities;
 
@@ -33,11 +32,11 @@ public class ShipMovement : MonoBehaviour
         }else {
             float dirX = Input.GetAxis("Horizontal");
 
-            player.velocity = new Vector2(dirX * speed * 2, player.velocity.y);
+            player.velocity = new Vector2(dirX * GlobalManager.getShipSpeed() * 2, player.velocity.y);
 
             float dirY = Input.GetAxis("Vertical");
 
-            player.velocity = new Vector2(player.velocity.x, dirY * speed);
+            player.velocity = new Vector2(player.velocity.x, dirY * GlobalManager.getShipSpeed());
 
             if (Input.GetButton("Jump") && !Input.GetButton("Fire1"))
             {
@@ -51,11 +50,7 @@ public class ShipMovement : MonoBehaviour
             }
         }
     }
-
-    public static void UpgradeSpeed() {
-        speed *= 2;
-    }
-
+    
     private void GetEntities(){
         this.entities.Clear();
         this.entities.AddRange(GameObject.FindGameObjectsWithTag("Chicken"));
