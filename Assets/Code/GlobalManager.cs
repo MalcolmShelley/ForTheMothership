@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GlobalManager
 {
-
+    private static int score = 0;
     private static int comradeCount = 100;
     private static int rations = 0;
     private static int playerHealth = 100;
@@ -15,6 +15,14 @@ public static class GlobalManager
     private static int laserDamage = 1;
     private static int shieldLevel = 0;
     private static float energyRegen = 1f;
+
+    public static void addScore(int scoreIncrease) {
+        score += scoreIncrease;
+    } 
+
+    public static int getScore () {
+        return score;
+    }
 
     public static int getComrades() {
         return comradeCount;
@@ -60,6 +68,7 @@ public static class GlobalManager
 
     public static void resetVariables() {
         //MAKE SURE THESE MATCH THE VARIABLES WHEN THEY START
+        score = 0;
         comradeCount = 100;
         rations = 0;
         playerHealth = 100;

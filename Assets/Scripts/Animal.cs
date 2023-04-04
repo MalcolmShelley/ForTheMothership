@@ -7,6 +7,8 @@ public class Animal : Enemy
     public int value = 1;
     private Rigidbody2D animal;
     private bool isAbducted = false;
+    private bool isFalling = false;
+    private float horizontalSpeed = 4;
     //temp variable
     private Vector2 destinationPoint;
     private float minX, maxX;
@@ -26,7 +28,6 @@ public class Animal : Enemy
         this.destinationPoint = GetRandomPointWithinRange();
         GetEntities();
         foreach(var body in this.neighbours){
-            //body.GetComponent<Rigidbody2D>().collisionDetectionMode = this.CollisionDetectionMode2D.Continuous;
             Physics2D.IgnoreCollision(body.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
         }
     }
@@ -39,38 +40,42 @@ public class Animal : Enemy
     public void Drop()
     {
         this.isAbducted = false;
+        this.isFalling = true;
     }
     void Update()
     {
-        //TODO FIX ABDUCTION
         if (this.isAbducted){
-            this.animal.velocity = new Vector2(animal.velocity.x, GlobalManager.getTraktorSpeed() * Time.deltaTime);
+            this.animal.velocity = new Vector2(animal.velocity.x, GlobalManager.getTraktorSpeed());
         }
         Move();
         GetEntities();
         if (Vector2.Distance(transform.position, destinationPoint) < 5f){
             StartCoroutine(WaitAndSetRandomDestination(2f));
         }
-    }     
-    
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (isFalling)
+        {
+            this.isFalling = false;
+        }
+    }
+
 
     void Move(){
-        int direction = CalculateDirection();
+        if (!this.isAbducted && !this.isFalling)
+        {
+            int direction = CalculateDirection();
 
-        //Debug.Log(this.WithinPadding());
+            if (this.WithinPadding() == true || this.CalculateDirection() == 0)
+            {
+                direction = 0;
+                this.destinationPoint = GetRandomPointWithinRange();
+            }
 
-        //Debug.Log(direction);
-
-        if (this.CalculateDirection() == 0){
-            direction = 0;
-            //Debug.Log(this.name + " here!");
-            this.destinationPoint = GetRandomPointWithinRange();
-            //Debug.Log(this.name + " is here: " + this.GetCurrentPosition() +  "  and is headed to: " + this.destinationPoint);
+            this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, horizontalSpeed * Mathf.Abs(direction) * Time.deltaTime);
         }
-        
-        //Debug.Log(direction);
-        this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, GlobalManager.getTraktorSpeed() * Mathf.Abs(direction) * Time.deltaTime);
-        
 
     }
 

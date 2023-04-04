@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     {
         if (isAlive)
         {
+            GlobalManager.addScore(1000);
             enemyAudio.Play();
             isAlive = false;
             anim.SetTrigger("die");
