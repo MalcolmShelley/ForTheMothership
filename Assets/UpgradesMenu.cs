@@ -97,8 +97,8 @@ public class UpgradesMenu : MonoBehaviour
     }
 
     public void upgradeShield() {
-        if (GlobalManager.getRations() + GlobalManager.getComrades() > shieldPrice) {
-            if (GlobalManager.getRations() > shieldPrice) {
+        if (GlobalManager.getRations() + GlobalManager.getComrades() >= shieldPrice) {
+            if (GlobalManager.getRations() >= shieldPrice) {
                 GlobalManager.useRations(shieldPrice);
             } else {
                 GlobalManager.useComrades(shieldPrice - GlobalManager.getRations());
@@ -117,8 +117,8 @@ public class UpgradesMenu : MonoBehaviour
     }
 
     public void upgradeLaser() {
-        if (GlobalManager.getRations() + GlobalManager.getComrades() > laserPrice) {
-            if (GlobalManager.getRations() > laserPrice) {
+        if (GlobalManager.getRations() + GlobalManager.getComrades() >= laserPrice) {
+            if (GlobalManager.getRations() >= laserPrice) {
                 GlobalManager.useRations(laserPrice);
             } else {
                 GlobalManager.useComrades(laserPrice - GlobalManager.getRations());
@@ -135,8 +135,8 @@ public class UpgradesMenu : MonoBehaviour
     }
 
     public void upgradeEnergyRegen() {
-        if (GlobalManager.getRations() + GlobalManager.getComrades() > energyRegenPrice) {
-            if (GlobalManager.getRations() > energyRegenPrice) {
+        if (GlobalManager.getRations() + GlobalManager.getComrades() >= energyRegenPrice) {
+            if (GlobalManager.getRations() >= energyRegenPrice) {
                 GlobalManager.useRations(energyRegenPrice);
             } else {
                 GlobalManager.useComrades(energyRegenPrice - GlobalManager.getRations());
@@ -155,8 +155,8 @@ public class UpgradesMenu : MonoBehaviour
     }
 
     public void upgradeSpeed() {
-        if (GlobalManager.getRations() + GlobalManager.getComrades() > speedPrice) {
-            if (GlobalManager.getRations() > speedPrice) {
+        if (GlobalManager.getRations() + GlobalManager.getComrades() >= speedPrice) {
+            if (GlobalManager.getRations() >= speedPrice) {
                 GlobalManager.useRations(speedPrice);
             } else {
                 GlobalManager.useComrades(speedPrice - GlobalManager.getRations());
@@ -174,8 +174,8 @@ public class UpgradesMenu : MonoBehaviour
     }
 
     public void upgradeTraktorSpeed() {
-        if (GlobalManager.getRations() + GlobalManager.getComrades() > traktorSpeedPrice) {
-            if (GlobalManager.getRations() > traktorSpeedPrice) {
+        if (GlobalManager.getRations() + GlobalManager.getComrades() >= traktorSpeedPrice) {
+            if (GlobalManager.getRations() >= traktorSpeedPrice) {
                 GlobalManager.useRations(traktorSpeedPrice);
             } else {
                 GlobalManager.useComrades(traktorSpeedPrice - GlobalManager.getRations());
@@ -193,8 +193,8 @@ public class UpgradesMenu : MonoBehaviour
     }
 
     public void upgradeTraktorCapacity() {
-        if (GlobalManager.getRations() + GlobalManager.getComrades() > traktorCapacityPrice) {
-            if (GlobalManager.getRations() > traktorCapacityPrice) {
+        if (GlobalManager.getRations() + GlobalManager.getComrades() >= traktorCapacityPrice) {
+            if (GlobalManager.getRations() >= traktorCapacityPrice) {
                 GlobalManager.useRations(traktorCapacityPrice);
             } else {
                 GlobalManager.useComrades(traktorCapacityPrice - GlobalManager.getRations());
@@ -214,8 +214,8 @@ public class UpgradesMenu : MonoBehaviour
     }
 
     public void repair() {
-        if (GlobalManager.getRations() + GlobalManager.getComrades() > repairPrice) {
-            if (GlobalManager.getRations() > repairPrice) {
+        if (GlobalManager.getRations() + GlobalManager.getComrades() >= repairPrice) {
+            if (GlobalManager.getRations() >= repairPrice) {
                 GlobalManager.useRations(repairPrice);
             } else {
                 GlobalManager.useComrades(repairPrice - GlobalManager.getRations());

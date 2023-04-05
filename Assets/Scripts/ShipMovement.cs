@@ -28,7 +28,11 @@ public class ShipMovement : MonoBehaviour
         if (GlobalManager.getPlayerHealth() == 0) {
             SceneManager.LoadScene(1); //Death Scene
         } else if(this.entities.Count == 0){
-             SceneManager.LoadScene(2); // Upgrade Scene;
+            if (SceneManager.GetActiveScene().buildIndex == 6) {
+                SceneManager.LoadScene(3); // You win!
+            } else {
+                SceneManager.LoadScene(2); // Upgrade Scene;
+            }
         }else {
             float dirX = Input.GetAxis("Horizontal");
 
