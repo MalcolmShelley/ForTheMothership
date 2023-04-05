@@ -251,8 +251,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1130412525
-  m_SortingLayer: 0
+  m_SortingLayerID: 1198216473
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1395,11 +1395,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2802792971861224958, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0005985279
+      value: -0.00060234015
       objectReference: {fileID: 0}
     - target: {fileID: 2802792971861224958, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.435607
+      value: 4.4351583
       objectReference: {fileID: 0}
     - target: {fileID: 2802792972497810636, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
       propertyPath: energyBar
@@ -1468,6 +1468,18 @@ PrefabInstance:
     - target: {fileID: 2802792972610068846, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802792973052252980, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802792973052252980, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802792973052252982, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
@@ -2325,8 +2337,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1868308037
-  m_SortingLayer: 0
+  m_SortingLayerID: 1198216473
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
