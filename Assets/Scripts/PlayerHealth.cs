@@ -2,35 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int startingHealth = 20;
-    public int currentHealth;
+    private int startingHealth;
+    private int currentHealth;
     public Slider healthSlider;
-    LaserSound laserSound;
-    TraktorSound traktorSound;
-    laser laser;
-    FireTraktor TraktorFunction;
-    ShipMovement shipMovement;
-
-    bool dead;
-    
     void Awake()
     {
-        laserSound = GetComponent<LaserSound>();
-        traktorSound = GetComponent<TraktorSound>();
-        laser = GetComponent<laser>();
-        TraktorFunction = GetComponent<FireTraktor>();
-        shipMovement = GetComponent<ShipMovement>();
+        startingHealth = GlobalManager.getPlayerHealth();
         currentHealth = startingHealth;
+        healthSlider.value = currentHealth;
     }
 
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
         healthSlider.value = currentHealth;
-        if (currentHealth <= 0 && !dead)
+        if (currentHealth <= 0)
         {
             Kill();
         }
@@ -38,11 +28,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Kill()
     {
-        dead = true;
-        laserSound.enabled = false;
-        traktorSound.enabled = false;
-        laser.enabled = false;
-        TraktorFunction.enabled = false;
-        shipMovement.enabled = false;
+        SceneManager.LoadScene(1); //Death Scene
+    }
+    public int getHealth()
+    {
+        return currentHealth;
     }
 }

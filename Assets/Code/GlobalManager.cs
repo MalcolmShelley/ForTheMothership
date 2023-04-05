@@ -16,15 +16,18 @@ public static class GlobalManager
     private static int shieldLevel = 0;
     private static float energyRegen = 1f;
 
-    public static void addScore(int scoreIncrease) {
+    public static void addScore(int scoreIncrease)
+    {
         score += scoreIncrease;
-    } 
+    }
 
-    public static int getScore () {
+    public static int getScore()
+    {
         return score;
     }
 
-    public static int getComrades() {
+    public static int getComrades()
+    {
         return comradeCount;
     }
 
@@ -46,33 +49,37 @@ public static class GlobalManager
         return rations;
     }
 
-    public static void resetPlayerHealth() {
+    public static void resetPlayerHealth()
+    {
         playerHealth = 100; //THIS SHOULD MATCH THE STARTING VALUE
     }
-    public static int getPlayerHealth() {
-        return playerHealth;
-    }
-
-    public static int reducePlayerHealth(int ammount)
+    public static void setPlayerHealth(int newHealth)
     {
-        playerHealth -= ammount;
+        playerHealth = newHealth;
+    }
+    public static int getPlayerHealth()
+    {
         return playerHealth;
     }
 
-    public static int getLevel() {
+    public static int getLevel()
+    {
         return levelCount;
     }
 
-    public static void incrementLevel() {
+    public static void incrementLevel()
+    {
         levelCount++;
     }
 
-    public static void resetLevel() {
+    public static void resetLevel()
+    {
         //Used in NewGame+
         levelCount = 4; //ALSO MAKE SURE THIS MATCHES START
     }
 
-    public static void resetVariables() {
+    public static void resetVariables()
+    {
         //MAKE SURE THESE MATCH THE VARIABLES WHEN THEY START
         score = 0;
         comradeCount = 100;
@@ -88,51 +95,63 @@ public static class GlobalManager
     }
 
     // Upgrades
-    public static float getTraktorSpeed() {
+    public static float getTraktorSpeed()
+    {
         return traktorSpeed;
     }
 
-    public static void upgradeTraktorSpeed() {
+    public static void upgradeTraktorSpeed()
+    {
         traktorSpeed *= 1.5f;
     }
 
-    public static float getShipSpeed() {
+    public static float getShipSpeed()
+    {
         return shipSpeed;
     }
 
-    public static void upgradeShipSpeed() {
+    public static void upgradeShipSpeed()
+    {
         shipSpeed *= 1.5f;
     }
 
-    public static int getLaserDamage() {
+    public static int getLaserDamage()
+    {
         return laserDamage;
     }
 
-    public static void upgradeLaserDamage() {
+    public static void upgradeLaserDamage()
+    {
         laserDamage += 1;
     }
 
-    public static int getShieldLevel() {
+    public static int getShieldLevel()
+    {
         return shieldLevel;
     }
 
-    public static void upgradeShield() {
+    public static void upgradeShield()
+    {
         shieldLevel += 1;
     }
 
-    public static float getEnergyRegen() {
+    public static float getEnergyRegen()
+    {
         return energyRegen;
     }
 
-    public static void upgradeEnergyRegen() {
+    public static void upgradeEnergyRegen()
+    {
         energyRegen *= 1.5f;
     }
 
-    public static int getTraktorCapacity() {
+    public static int getTraktorCapacity()
+    {
         return traktorCapacity;
     }
 
-    public static void upgradeTraktorCapacity() {
+    public static void upgradeTraktorCapacity()
+    {
         traktorCapacity *= 2;
         // traktorCapacity = 9999;
     }

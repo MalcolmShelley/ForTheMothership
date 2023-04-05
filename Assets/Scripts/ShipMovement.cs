@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ShipMovement : MonoBehaviour
 {
+    PlayerHealth playerHealth;
     private Rigidbody2D player;
     public Animator anim;
 
@@ -13,6 +14,7 @@ public class ShipMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+
         this.player = GetComponent<Rigidbody2D>();
         this.anim = GetComponent<Animator>();
         this.anim.SetBool("EquipTraktor", false);
@@ -25,9 +27,10 @@ public class ShipMovement : MonoBehaviour
     private void Update()
     {
         GetEntities();
-        if (GlobalManager.getPlayerHealth() == 0) {
-            SceneManager.LoadScene(1); //Death Scene
-        } else if(this.entities.Count == 0){
+        if(this.entities.Count == 0){
+            playerHealth = player.GetComponent<PlayerHealth>();
+            int curHealth = playerHealth.getHealth();
+            GlobalManager.setPlayerHealth(curHealth);
              SceneManager.LoadScene(2); // Upgrade Scene;
         }else {
             float dirX = Input.GetAxis("Horizontal");
