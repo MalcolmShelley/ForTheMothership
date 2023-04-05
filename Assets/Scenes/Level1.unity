@@ -823,7 +823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00048407417, y: 3.6642587, z: -20}
+  m_LocalPosition: {x: -0.00048224058, y: 3.6639423, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6694,6 +6694,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7894802574153366026, guid: 79010d2a0de6f784eaa58378414af3ec, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7894802574153366027, guid: 79010d2a0de6f784eaa58378414af3ec, type: 3}
       propertyPath: m_Name
       value: Farmer
