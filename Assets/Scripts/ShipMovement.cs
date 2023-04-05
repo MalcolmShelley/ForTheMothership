@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ShipMovement : MonoBehaviour
 {
@@ -9,12 +10,16 @@ public class ShipMovement : MonoBehaviour
     private Rigidbody2D player;
     public Animator anim;
 
+    //For calcing animals left
+    public GameObject TMPAnimalsLeft;
+    TextMeshProUGUI animalsText;
+
     private List<GameObject> entities;
 
     // Start is called before the first frame update
     private void Start()
     {
-
+        animalsText = TMPAnimalsLeft.GetComponent<TextMeshProUGUI>();
         this.player = GetComponent<Rigidbody2D>();
         this.anim = GetComponent<Animator>();
         this.anim.SetBool("EquipTraktor", false);
@@ -23,15 +28,16 @@ public class ShipMovement : MonoBehaviour
         GetEntities();
     }
 
+
     // Update is called once per frame
     private void Update()
     {
+        animalsText.text = "Objectives Left: " + this.entities.Count.ToString();
         GetEntities();
         if(this.entities.Count == 0){
             playerHealth = player.GetComponent<PlayerHealth>();
-            int curHealth = playerHealth.getHealth();
-            GlobalManager.setPlayerHealth(curHealth);
-             SceneManager.LoadScene(2); // Upgrade Scene;
+            GlobalManager.setPlayerHealth(playerHealth.getHealth());
+            SceneManager.LoadScene(2); // Upgrade Scene;
         }else {
             float dirX = Input.GetAxis("Horizontal");
 

@@ -4,11 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Chicken
   - Cow
   - Pig
   - Farmer
+  - Chicken
   - shotgun
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Animal
   - Water
   - UI
-  - 
+  - Walls
   - 
   - 
   - 
@@ -43,15 +44,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 1130412525
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Ship
-    uniqueID: 2928305691
-    locked: 0
-  - name: Foreground
-    uniqueID: 1868308037
     locked: 0
