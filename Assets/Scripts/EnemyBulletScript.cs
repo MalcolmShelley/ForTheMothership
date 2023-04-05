@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBulletScript : MonoBehaviour
 {
+    PlayerHealth playerHealth;
     private GameObject player;
     private Rigidbody2D rb;
 
@@ -15,7 +16,7 @@ public class EnemyBulletScript : MonoBehaviour
         
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-
+        playerHealth = player.GetComponent<PlayerHealth>();
         Vector3 direction = player.transform.position - transform.position;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
     }
@@ -32,6 +33,8 @@ public class EnemyBulletScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
+            playerHealth.TakeDamage(10);
+            
         }
     }
 

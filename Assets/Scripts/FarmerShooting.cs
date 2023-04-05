@@ -35,8 +35,6 @@ public class FarmerShooting : MonoBehaviour
                 Shoot();
             }
         }
-
-        
     }
 
     void Shoot()

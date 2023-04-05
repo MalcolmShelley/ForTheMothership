@@ -22,7 +22,10 @@ public static class GlobalManager
     {
         return rations;
     }
-
+    public static void setPlayerHealth(int newHealth)
+    {
+        playerHealth=newHealth;
+    }
     public static int getPlayerHealth() {
         return playerHealth;
     }

@@ -198,6 +198,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 601335192}
     m_Modifications:
+    - target: {fileID: 9164223014749903613, guid: 198961175ec9c054ab180ee64605623f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9164223015215842306, guid: 198961175ec9c054ab180ee64605623f, type: 3}
       propertyPath: m_Name
       value: HealthUI
@@ -301,6 +305,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9164223015215842307, guid: 198961175ec9c054ab180ee64605623f, type: 3}
   m_PrefabInstance: {fileID: 32528624}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &199213037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9164223014749903615, guid: 198961175ec9c054ab180ee64605623f, type: 3}
+  m_PrefabInstance: {fileID: 32528624}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &284053062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,6 +2366,7 @@ GameObject:
   - component: {fileID: 1663579158}
   - component: {fileID: 1663579159}
   - component: {fileID: 1663579160}
+  - component: {fileID: 1663579161}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2586,6 +2602,19 @@ PolygonCollider2D:
       - {x: 0.359375, y: -1.421875}
       - {x: 0.828125, y: -1.546875}
       - {x: 1.765625, y: -1.546875}
+--- !u!114 &1663579161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663579152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d67b7087a975e479b843bc7319e495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 199213037}
 --- !u!1 &1694179760
 GameObject:
   m_ObjectHideFlags: 0
