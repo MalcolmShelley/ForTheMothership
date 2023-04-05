@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 1;
+    public float health = 1;
     public Animator anim;
     private bool isAlive = true;
     AudioSource enemyAudio;
@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
         {
             enemyAudio = GetComponent<AudioSource>();
         }
-    public void TakeDamage (int damage)
+    public void TakeDamage (float damage)
     {
         if (!isAlive)
             return;
@@ -36,5 +36,11 @@ public class Enemy : MonoBehaviour
             isAlive = false;
             anim.SetTrigger("die");
         }
+    }
+
+    //used in death animation to remove object
+    private void Remove()
+    {
+        Destroy(gameObject);
     }
 }

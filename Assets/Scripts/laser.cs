@@ -43,7 +43,7 @@ public class laser : MonoBehaviour
                 _hit.collider.TryGetComponent(out Enemy hitEnemy);
                 if (hitEnemy)
                 {
-                    hitEnemy.TakeDamage(GlobalManager.getLaserDamage());
+                    hitEnemy.TakeDamage(GlobalManager.getLaserDamage() * 40 * Time.deltaTime);
                 }
             }
             else
