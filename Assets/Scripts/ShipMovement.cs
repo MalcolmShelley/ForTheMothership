@@ -32,6 +32,7 @@ public class ShipMovement : MonoBehaviour
     {
         animalsText.text = "Objectives Left: " + this.entities.Count.ToString();
         GetEntities();
+        //Debug.Log("on scene: " + GlobalManager.getLevel() + " there are this many entities: " + entities.Count);
         if (GlobalManager.getPlayerHealth() == 0) {
             SceneManager.LoadScene(1); //Death Scene
         } else if(this.entities.Count == 0){
