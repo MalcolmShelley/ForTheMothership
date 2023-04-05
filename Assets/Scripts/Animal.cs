@@ -4,25 +4,19 @@ using UnityEngine;
 
 public class Animal : Enemy
 {
-    public int value = 1;
     private Rigidbody2D animal;
     private bool isAbducted = false;
     private bool isFalling = false;
     private float horizontalSpeed = 4f;
-    //temp variable
     private Vector2 destinationPoint;
     private float minX, maxX;
-
-    //make padding more elegant
-    private float padding;
-
     private List<GameObject> neighbours;
 
 
     void Start(){
+        //initiate variables
         this.neighbours = new List<GameObject>();
         this.animal = GetComponent<Rigidbody2D>();
-        this.padding = 0f;
         if(GlobalManager.getLevel() == 4 || GlobalManager.getLevel() == 6){
             this.minX = -50f;
             this.maxX = 50f;
@@ -49,6 +43,7 @@ public class Animal : Enemy
     }
     void Update()
     {
+        Debug.Log(GlobalManager.getLevel());
         if(GlobalManager.getLevel() == 4 || GlobalManager.getLevel() == 6){
             this.minX = -50f;
             this.maxX = 50f;
@@ -78,14 +73,13 @@ public class Animal : Enemy
 
 
     void Move(){
-        Debug.Log(isAbducted + " " + isFalling);
         if (!this.isAbducted && !this.isFalling)
         {
             int direction = CalculateDirection();
 
-            if (this.isFalling || this.CalculateDirection() == 0)
+            if (this.CalculateDirection() == 0)
             {
-                this.destinationPoint = GetRandomPointWithinRange();
+                WaitAndSetRandomDestination(2f);
             }
 
             this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, this.horizontalSpeed * Mathf.Abs(direction) * Time.deltaTime);
@@ -94,7 +88,6 @@ public class Animal : Enemy
     }
 
     private Vector2 GetRandomPointWithinRange(){
-       //fix distance
         
         float x = this.transform.position.x;
         
@@ -104,27 +97,6 @@ public class Animal : Enemy
         float y = this.transform.position.y;
 
         return new Vector2(x, y);
-    }
-
-    private Vector2 GetCurrentPosition(){
-        return new Vector2(this.transform.position.x, this.transform.position.y);
-    }
-
-    private bool WithinPadding(){
-        foreach (var entity in neighbours){
-            if(entity != null && entity.GetComponent<BoxCollider2D>() != null){
-                this.padding = entity.GetComponent<BoxCollider2D>().bounds.size.x *1.5f;
-                if (this.transform.position.x > entity.transform.position.x - this.padding && this.transform.position.x < entity.transform.position.x + this.padding && this.name != entity.name){
-                    if(CalculateDirection() == 1 && this.transform.position.x > entity.transform.position.x){
-                        break;
-                    }else if(CalculateDirection() == -1 && this.transform.position.x < entity.transform.position.x){
-                        break;
-                    }
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     private void GetEntities(){
@@ -148,7 +120,7 @@ public class Animal : Enemy
     IEnumerator WaitAndSetRandomDestination(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        GetRandomPointWithinRange();
+        this.destinationPoint = GetRandomPointWithinRange();
     }
 
     void OnCollisionEnter(Collision collision){
@@ -158,38 +130,36 @@ public class Animal : Enemy
     }
 
     public void CheckIfFalling()
-{
-    // Get the current position of the animal
-    Vector2 position = transform.position;
-
-    // Cast a ray downwards from the animal's position
-    RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down);
-
-    // If the raycast hit something
-    if (hit.collider != null)
     {
-        // Check if the hit object is on the "Default" or "Walls" layer
-        if (hit.collider.gameObject.layer == 0 ||
-            hit.collider.gameObject.layer == 6 || 
-            hit.collider.gameObject.layer == 3)
+        // Get the current position of the animal
+        Vector2 position = transform.position;
+
+        // Cast a ray downwards from the animal's position
+        RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down);
+
+        // If the raycast hit something
+        if (hit.collider != null)
         {
-            // Animal is not falling
-            isFalling = false;
+            // Check if the hit object is on the "Default" or "Walls" layer
+            if (hit.collider.gameObject.layer == 0 ||
+                hit.collider.gameObject.layer == 6 || 
+                hit.collider.gameObject.layer == 3)
+            {
+                // Animal is not falling
+                isFalling = false;
+            }
+            else
+            {
+                // Animal is falling
+                isFalling = true;
+                StartCoroutine(WaitAndSetRandomDestination(2f));
+            }
         }
         else
         {
-            Debug.Log(hit.collider.gameObject.layer);
             // Animal is falling
             isFalling = true;
             StartCoroutine(WaitAndSetRandomDestination(2f));
         }
     }
-    else
-    {
-        // Animal is falling
-        Debug.Log("else");
-        isFalling = true;
-        StartCoroutine(WaitAndSetRandomDestination(2f));
-    }
-}
 }
