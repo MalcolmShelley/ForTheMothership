@@ -8,27 +8,35 @@ public class FarmerShooting : MonoBehaviour
     public Transform bulletPosition;
     private GameObject gun;
     private float timer;
+    private GameObject player;
 
     public float timeBetweenAttacks = 5f;
     public int damage = 4;
 
-    Transform player;
     
 
     void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         gun = GameObject.FindGameObjectWithTag("shotgun");
     }
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer > 1)
+        
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+        if (distance < 100)
         {
-            timer = 0;
-            Shoot();
+            timer += Time.deltaTime;
+
+            if (timer > 1)
+            {
+                timer = 0;
+                Shoot();
+            }
         }
+
+        
     }
 
     void Shoot()
