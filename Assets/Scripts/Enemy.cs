@@ -37,13 +37,4 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("die");
         }
     }
-
-    private void Remove()
-    {
-        Destroy(gameObject);
-    }
-
-    private void GetEntities(){
-
-    }
 }
