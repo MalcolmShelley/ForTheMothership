@@ -10,6 +10,7 @@ public class laser : MonoBehaviour
     public Transform firepoint;
     public Transform gun;
     public Quaternion gunRotation;
+    [SerializeField] PlayerEnergy energyBar;
 
     // Update is called once per frame
     void Update()
@@ -20,6 +21,7 @@ public class laser : MonoBehaviour
         }
         else
         {
+            energyBar.regenEnergy();
             lineRenderer.enabled = false;
         }
 
@@ -27,25 +29,30 @@ public class laser : MonoBehaviour
     }
 
     void ShootLaser() {
-        
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 gunDirection = mousePos - (Vector2)firepoint.position;
-        RaycastHit2D _hit = Physics2D.Raycast(firepoint.position, gunDirection.normalized);
-        
-        if (_hit)
+        if (energyBar.useEnergy(40 * Time.deltaTime) > 5)
         {
-            DrawBeam(firepoint.position, _hit.point);
+            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 gunDirection = mousePos - (Vector2)firepoint.position;
+            RaycastHit2D _hit = Physics2D.Raycast(firepoint.position, gunDirection.normalized);
 
-            // deal damage if possible
-            _hit.collider.TryGetComponent(out Enemy hitEnemy);
-            if (hitEnemy)
+            if (_hit)
             {
-                hitEnemy.TakeDamage(GlobalManager.getLaserDamage());
+                DrawBeam(firepoint.position, _hit.point);
+
+                // deal damage if possible
+                _hit.collider.TryGetComponent(out Enemy hitEnemy);
+                if (hitEnemy)
+                {
+                    hitEnemy.TakeDamage(GlobalManager.getLaserDamage());
+                }
             }
-        }
-        else
+            else
+            {
+                DrawBeam(firepoint.position, (Vector2)firepoint.position + mousePos * 50);
+            }
+        } else
         {
-            DrawBeam(firepoint.position, (Vector2)firepoint.position + mousePos * 50);
+            lineRenderer.enabled = false;
         }
     }
 
