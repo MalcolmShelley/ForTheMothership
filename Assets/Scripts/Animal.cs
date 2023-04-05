@@ -43,7 +43,6 @@ public class Animal : Enemy
     }
     void Update()
     {
-        Debug.Log(GlobalManager.getLevel());
         if(GlobalManager.getLevel() == 4 || GlobalManager.getLevel() == 6){
             this.minX = -50f;
             this.maxX = 50f;

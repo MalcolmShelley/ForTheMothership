@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserSound : MonoBehaviour
 {
     AudioSource laserAudio;
+    PlayerEnergy energyBar;
 
     void Start()
     {

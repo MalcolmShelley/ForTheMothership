@@ -6,6 +6,7 @@ using TMPro;
 
 public class ShipMovement : MonoBehaviour
 {
+    PlayerHealth playerHealth;
     private Rigidbody2D player;
     public Animator anim;
 
@@ -27,20 +28,16 @@ public class ShipMovement : MonoBehaviour
         GetEntities();
     }
 
+
     // Update is called once per frame
     private void Update()
     {
         animalsText.text = "Objectives Left: " + this.entities.Count.ToString();
         GetEntities();
-        //Debug.Log("on scene: " + GlobalManager.getLevel() + " there are this many entities: " + entities.Count);
-        if (GlobalManager.getPlayerHealth() == 0) {
-            SceneManager.LoadScene(1); //Death Scene
-        } else if(this.entities.Count == 0){
-            if (SceneManager.GetActiveScene().buildIndex == 6) {
-                SceneManager.LoadScene(3); // You win!
-            } else {
-                SceneManager.LoadScene(2); // Upgrade Scene;
-            }
+        if(this.entities.Count == 0){
+            playerHealth = player.GetComponent<PlayerHealth>();
+            GlobalManager.setPlayerHealth(playerHealth.getHealth());
+            SceneManager.LoadScene(2); // Upgrade Scene;
         }else {
             float dirX = Input.GetAxis("Horizontal");
 
