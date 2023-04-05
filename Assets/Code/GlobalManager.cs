@@ -8,7 +8,7 @@ public static class GlobalManager
     private static int comradeCount = 100;
     private static int rations = 0;
     private static int playerHealth = 100;
-    private static int levelCount = 4;
+    private static int levelCount = 3;
     private static float traktorSpeed = 5f;
     private static int traktorCapacity = 1;
     private static float shipSpeed = 5f;
@@ -69,7 +69,7 @@ public static class GlobalManager
 
     public static void resetLevel() {
         //Used in NewGame+
-        levelCount = 4; //ALSO MAKE SURE THIS MATCHES START
+        levelCount = 3; //ALSO MAKE SURE THIS MATCHES START
     }
 
     public static void resetVariables() {
@@ -78,7 +78,7 @@ public static class GlobalManager
         comradeCount = 100;
         rations = 0;
         playerHealth = 100;
-        levelCount = 4;
+        levelCount = 3;
         traktorSpeed = 5f;
         traktorCapacity = 1;
         shipSpeed = 5f;

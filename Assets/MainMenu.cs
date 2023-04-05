@@ -18,8 +18,8 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame() {
         GlobalManager.resetVariables();
-        SceneManager.LoadScene(GlobalManager.getLevel()); //Load first level
         GlobalManager.incrementLevel();
+        SceneManager.LoadScene(GlobalManager.getLevel()); //Load first level
     }
 
     public void QuitGame() {
