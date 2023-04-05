@@ -8,7 +8,7 @@ public class Animal : Enemy
     private Rigidbody2D animal;
     private bool isAbducted = false;
     private bool isFalling = false;
-    private float horizontalSpeed = 4;
+    private float horizontalSpeed = 4f;
     //temp variable
     private Vector2 destinationPoint;
     private float minX, maxX;
@@ -23,8 +23,13 @@ public class Animal : Enemy
         this.neighbours = new List<GameObject>();
         this.animal = GetComponent<Rigidbody2D>();
         this.padding = 0f;
-        this.minX = -50f;
-        this.maxX = 50f;
+        if(GlobalManager.getLevel() == 4){
+            this.minX = -50f;
+            this.maxX = 50f;
+        }else if(GlobalManager.getLevel() == 5){
+            this.minX = -18.5f;
+            this.maxX = 6f;
+        }
         this.destinationPoint = GetRandomPointWithinRange();
         GetEntities();
         foreach(var body in this.neighbours){
@@ -44,9 +49,18 @@ public class Animal : Enemy
     }
     void Update()
     {
+        if(GlobalManager.getLevel() == 4){
+            this.minX = -50f;
+            this.maxX = 50f;
+        }else if(GlobalManager.getLevel() == 5){
+            this.minX = -18.5f;
+            this.maxX = 6f;
+        }
+
         if (this.isAbducted){
             this.animal.velocity = new Vector2(animal.velocity.x, GlobalManager.getTraktorSpeed());
         }
+        CheckIfFalling();
         Move();
         GetEntities();
         if (Vector2.Distance(transform.position, destinationPoint) < 5f){
@@ -64,18 +78,18 @@ public class Animal : Enemy
 
 
     void Move(){
+        Debug.Log(isAbducted + " " + isFalling);
         if (!this.isAbducted && !this.isFalling)
         {
             int direction = CalculateDirection();
 
-            if (this.WithinPadding() == true || this.CalculateDirection() == 0)
+            if (this.isFalling || this.CalculateDirection() == 0)
             {
-                direction = 0;
                 this.destinationPoint = GetRandomPointWithinRange();
             }
 
-            this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, horizontalSpeed * Mathf.Abs(direction) * Time.deltaTime);
-        }
+            this.transform.position = Vector2.MoveTowards(this.transform.position, this.destinationPoint, this.horizontalSpeed * Mathf.Abs(direction) * Time.deltaTime);
+        }        
 
     }
 
@@ -142,4 +156,40 @@ public class Animal : Enemy
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
         }
     }
+
+    public void CheckIfFalling()
+{
+    // Get the current position of the animal
+    Vector2 position = transform.position;
+
+    // Cast a ray downwards from the animal's position
+    RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down);
+
+    // If the raycast hit something
+    if (hit.collider != null)
+    {
+        // Check if the hit object is on the "Default" or "Walls" layer
+        if (hit.collider.gameObject.layer == 0 ||
+            hit.collider.gameObject.layer == 6 || 
+            hit.collider.gameObject.layer == 3)
+        {
+            // Animal is not falling
+            isFalling = false;
+        }
+        else
+        {
+            Debug.Log(hit.collider.gameObject.layer);
+            // Animal is falling
+            isFalling = true;
+            StartCoroutine(WaitAndSetRandomDestination(2f));
+        }
+    }
+    else
+    {
+        // Animal is falling
+        Debug.Log("else");
+        isFalling = true;
+        StartCoroutine(WaitAndSetRandomDestination(2f));
+    }
+}
 }
