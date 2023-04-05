@@ -23,7 +23,7 @@ public class Animal : Enemy
         this.neighbours = new List<GameObject>();
         this.animal = GetComponent<Rigidbody2D>();
         this.padding = 0f;
-        if(GlobalManager.getLevel() == 4){
+        if(GlobalManager.getLevel() == 4 || GlobalManager.getLevel() == 6){
             this.minX = -50f;
             this.maxX = 50f;
         }else if(GlobalManager.getLevel() == 5){
@@ -49,7 +49,7 @@ public class Animal : Enemy
     }
     void Update()
     {
-        if(GlobalManager.getLevel() == 4){
+        if(GlobalManager.getLevel() == 4 || GlobalManager.getLevel() == 6){
             this.minX = -50f;
             this.maxX = 50f;
         }else if(GlobalManager.getLevel() == 5){
