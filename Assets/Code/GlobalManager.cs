@@ -12,7 +12,7 @@ public static class GlobalManager
     private static float traktorSpeed = 5f;
     private static int traktorCapacity = 1;
     private static float shipSpeed = 5f;
-    private static int laserDamage = 1;
+    private static int laserDamage = 5;
     private static int shieldLevel = 0;
     private static float energyRegen = 1f;
 

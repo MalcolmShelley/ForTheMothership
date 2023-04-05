@@ -5033,6 +5033,10 @@ PrefabInstance:
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 1185120621}
+    - target: {fileID: 2802792972610068839, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 8212041261926859629}
     - target: {fileID: 2802792972610068843, guid: d0dd66413a882cc4895a692aa55e4bad, type: 3}
       propertyPath: TMPAnimalsLeft
       value: 
@@ -5327,3 +5331,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8212041261387343603, guid: a3295aa856cc2b74da18bb151267d3b6, type: 3}
   m_PrefabInstance: {fileID: 8212041261926859627}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8212041261926859629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1070401248488882532, guid: a3295aa856cc2b74da18bb151267d3b6, type: 3}
+  m_PrefabInstance: {fileID: 8212041261926859627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
