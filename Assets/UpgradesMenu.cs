@@ -30,6 +30,12 @@ public class UpgradesMenu : MonoBehaviour
     public GameObject TMPRepair;
     TextMeshProUGUI repairText;
 
+    // currencies
+    public GameObject TMPRations;
+    TextMeshProUGUI rationsText;
+    public GameObject TMPComrades;
+    TextMeshProUGUI comradesText;
+
     //To make the text changeable with script
     public GameObject TMPUpgrade;
     TextMeshProUGUI upgradeText;
@@ -46,6 +52,7 @@ public class UpgradesMenu : MonoBehaviour
 
         // Set the TMP to the respective gameObject selected in Unity
         upgradeText = TMPUpgrade.GetComponent<TextMeshProUGUI>();
+
         laserText = TMPLaser.GetComponent<TextMeshProUGUI>();
         shieldText = TMPShield.GetComponent<TextMeshProUGUI>();
         speedText = TMPSpeed.GetComponent<TextMeshProUGUI>();
@@ -53,6 +60,9 @@ public class UpgradesMenu : MonoBehaviour
         energyRegenText = TMPEnergyRegen.GetComponent<TextMeshProUGUI>();
         traktorCapacityText = TMPTraktorCapacity.GetComponent<TextMeshProUGUI>();
         repairText = TMPRepair.GetComponent<TextMeshProUGUI>();
+
+        comradesText = TMPComrades.GetComponent<TextMeshProUGUI>();
+        rationsText = TMPRations.GetComponent<TextMeshProUGUI>();
         
         StartCoroutine(ShowText());
         repairPrice = (100 - GlobalManager.getPlayerHealth())/10;
@@ -75,6 +85,9 @@ public class UpgradesMenu : MonoBehaviour
 
     void Update() {
         upgradeText.text = currentText;
+        comradesText.text = GlobalManager.getComrades().ToString();
+        rationsText.text = GlobalManager.getRations().ToString();
+
     }
 
     //TODO: make this work for other scenes
