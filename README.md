@@ -1,2 +1,3 @@
-# ForTheMothership
-CS4483 Game Design group project
+# ForTheMothership!
+Passion project platformer game
+Level design WIP - happy to collaborate
